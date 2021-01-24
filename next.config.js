@@ -11,14 +11,6 @@ module.exports = (_phase, { _defaultConfig }) => {
 				// https://github.com/blitz-js/blitz/issues/13
 				// https://github.com/blitz-js/blitz/issues/29
 				// https://github.com/blitz-js/blitz/pull/31
-				if (!options.isServer) {
-					// Ensure prisma client is not included in the client bundle
-					// FIXME: doesnt work
-					config.module.rules.push({
-						test: /@prisma\/client/,
-						use: 'null-loader',
-					})
-				}
 				return config
 			},
 			pwa: {
