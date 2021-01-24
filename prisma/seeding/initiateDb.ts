@@ -1,4 +1,6 @@
+let promptly: Record<any, any>
 if (require.main === module) {
+	promptly = require('promptly')
 	require('dotenv').config({ debug: true })
 	const fileIndex = process.argv.findIndex(
 		(val) => val.endsWith('initiateDb.ts')
@@ -36,7 +38,6 @@ import {
 	TmdbIdType
 } from '../../src/lib/tmdb/api/id'
 
-const promptly = require('promptly')
 
 export const likedShowsInCommon: TmdbId[] = [
 	{
