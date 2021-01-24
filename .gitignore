@@ -3,6 +3,8 @@
 cypress.env.json
 public/*.js
 public/*.js.map
+test/cypress/screenshots
+test/cypress/videos
 
 .idea
 .vscode
