@@ -1,4 +1,3 @@
-import { getSession } from 'lib/api/utils/getSession'
 import { constants } from 'http2'
 import { ApiShowsRequest } from 'lib/api/shows/ApiShowsRequest'
 import mapImdbIdToTmdbId from 'lib/api/shows/mapImdbIdToTmdbId'

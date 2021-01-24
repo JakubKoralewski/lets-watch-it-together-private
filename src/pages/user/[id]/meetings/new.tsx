@@ -12,7 +12,6 @@ import Layout from 'components/Layout'
 import theme from 'theme'
 import { GetServerSideProps } from 'next'
 import { getUserDetails } from 'lib/api/users/[id]/getUserDetails'
-import { getSession } from 'lib/api/utils/getSession'
 import UserDetailsView from 'components/User/UserDetailsView'
 import { UserDetails } from 'lib/api/users/UserDetails'
 import PreviewShowsInCommon, {
@@ -57,7 +56,7 @@ const useStyles = makeStyles({
 		margin: theme.spacing(5)
 	}
 })
-
+/** https://arunoda.me/blog/ssr-and-server-only-modules */
 export const getServerSideProps: GetServerSideProps =
 	async (context) => {
 		const logger = createLogger(LoggerTypes.NewMeetingGetServerSideProps)
@@ -70,6 +69,8 @@ export const getServerSideProps: GetServerSideProps =
 		} catch (e) {
 			userId = -1
 		}
+		// import { getSession } from 'lib/api/utils/getSession'
+		const getSession = require('../../../../lib/api/utils/getSession')
 		const session = await getSession(context)
 		if (!session || userId === -1) {
 			return {

@@ -1,6 +1,5 @@
-require('dotenv').config({ debug: true })
-
 if (require.main === module) {
+	require('dotenv').config({ debug: true })
 	const fileIndex = process.argv.findIndex(
 		(val) => val.endsWith('initiateDb.ts')
 	)
@@ -39,7 +38,7 @@ import {
 
 const promptly = require('promptly')
 
-const likedShowsInCommon: TmdbId[] = [
+export const likedShowsInCommon: TmdbId[] = [
 	{
 		// https://www.themoviedb.org/tv/1396-breaking-bad
 		id: 1396,
@@ -47,8 +46,15 @@ const likedShowsInCommon: TmdbId[] = [
 	}
 ]
 
-const users: (Pick<User, 'name' | 'image'> & { liked?: TmdbId[] })[] = [
+export type SeededUser = (Pick<User, 'name' | 'image' | 'email'> & { liked?: TmdbId[] })
+
+export const users: [SeededUser, SeededUser] = [
 	{
+		/**
+		 *  email is used to be able to uniquely find
+		 *  for authorizing in tests & review apps
+		 */
+		email: 'myoldfriend',
 		name: 'My old friend',
 		image: 'https://media.tenor.com/images/84dfa0a1739013f3ac7b544a7d8bdc08/raw',
 		liked: [
@@ -96,12 +102,13 @@ const users: (Pick<User, 'name' | 'image'> & { liked?: TmdbId[] })[] = [
 		]
 	},
 	{
+		email: 'mysweetestfriend',
 		name: 'My sweetest friend',
 		image: 'https://fwcdn.pl/ppo/43/71/54371/456420.1.jpg'
 	}
 ]
 
-export default async function initiateDb(prisma: PrismaClient): Promise<void> {
+export async function initiateDb(prisma: PrismaClient): Promise<void> {
 	console.log(`Initiate dummy users if they don't exist`)
 	const dummyUsersIds: number[] = []
 	for (const user of users) {
@@ -120,7 +127,8 @@ export default async function initiateDb(prisma: PrismaClient): Promise<void> {
 			foundUser = await prisma.user.create({
 				data: {
 					name: user.name,
-					image: user.image
+					image: user.image,
+					email: user.email
 				}
 			})
 			// let likedPromises: Promise<Prisma.UserCreateInput['liked']['create']>
@@ -259,18 +267,18 @@ if (require.main === module) {
 	const disconnect = async () => {
 		console.log('disconnecting')
 		await prisma.$disconnect().catch(err => {
-			console.log('error disconnecting', err)
-		}).then(() => {
+			console.error('error disconnecting', err)
+		}).finally(() => {
 			console.log('disconnected')
+			process.exit(1)
 		})
 	}
 	// FIXME: the script doesnt close despite
 	//        trying to close prisma connection...
 	initiateDb(prisma).catch(async err => {
-		await disconnect().finally(() => {
-			throw err
-		})
-	}).then(async () => {
+		console.error(err)
+		await disconnect()
+	}).finally(async () => {
 		console.log('Seeding finished without error')
 		await disconnect()
 	})

@@ -1,28 +1,23 @@
-import { mapUserToUserPublicSearchResult, UserPublicSearchResult, UserWithFriendsData } from './UserPublic'
-import { User, Meeting, Prisma, FriendRequests } from '@prisma/client'
+import {  UserPublicSearchResult } from './UserPublic'
+import { User } from '@prisma/client'
 import { MeetingFriendResult } from '../meetings/MeetingFriendResult'
-import {
-	YourFriend,
-	toFriendRequestReceived as toFriendRequestReceivedInner, toFriendRequestSent,
-	toFriendRequestSent as toFriendRequestSentInner
-} from '../friends/mapFriendsDbToClient'
-import { FriendshipTypeResponse } from './[id]/FriendshipType'
-import { TmdbId, TmdbIdSerialized } from '../../tmdb/api/id'
-import { TMDBTvGetDetailsResponse } from '../../tmdb/api/tv_get_details'
 import { StrippedShowDetails } from '../shows/[id]/StrippedShowDetails'
-
-/*
-export type UserDetails = UserPublicSearchResult & {
-	friends: User['id'][],
-	meetings: Meeting['id'][]
-}
-*/
 
 /**
  *  We omit status because we know they're a friend already
  *  from context.
+ *
+ *  @see UserPublicSearchResult
  */
 export type Friend = Omit<UserPublicSearchResult, 'status'>
+
+/**
+ *  @see mapUserToKnownFriend
+ *  @see Friend
+ *  @see UserPublicSearchResult
+ *  @see MeetingFriendResult
+ *  @see StrippedShowDetails
+ */
 export type UserDetails = UserPublicSearchResult & {
 	friends: Friend[],
 	meetings: MeetingFriendResult[],
@@ -33,6 +28,19 @@ export type UserDetails = UserPublicSearchResult & {
 	friendsAt: string
 }
 
+/**
+ *  Here we make the choice of what is exposed to a
+ *  user's friend.
+ *
+ *  NOTE: Assuming we correctly use this function wherever
+ *        we expose this information!
+ *
+ *  Example:
+ *    - `/api/users/[id]`
+ *
+ *  @see UserDetails
+ *  @see Friend
+ */
 export function mapUserToKnownFriend(user: User): Friend {
 	return {
 		id: user.id,
@@ -40,55 +48,3 @@ export function mapUserToKnownFriend(user: User): Friend {
 		image: user.image,
 	}
 }
-// export function areFriends(user: UserPublicSearchResult) {
-// 	return user.status === FriendshipTypeResponse.AcceptedByOther ||
-// 		user.status === FriendshipTypeResponse.AcceptedByYou
-// }
-
-/*
-export type UserWithFriendsAndMeetings =
-	Prisma.UserGetPayload<{
-		include: {
-			friendRequestsReceived: true,
-			friendRequestsSent: true,
-			meetingsReceived: true,
-			meetingsCreated: true
-		}
-	}>
-*/
-
-/*
-function fromFriendRequestsReceived(
-	friendRequestReceived: FriendRequests
-): YourFriend {
-	return toFriendRequestReceivedInner(
-		friendRequestReceived,
-	)
-}
-function fromFriendRequestsSent(
-	friendRequestSent: FriendRequests
-): YourFriend {
-
-}
-
-export function mapUserToFriends(
-	user: UserWithFriendsData
-): YourFriend[] {
-	return user.friendRequestsReceived
-		.map(fromFriendRequestsReceived)
-		.concat(
-			user.friendRequestsSent
-				.map(fromFriendRequestsSent)
-}
-
-
-export function mapUserToUserDetails(
-	user: UserWithFriendsAndMeetings
-): UserDetails {
-	const userWithFriendStatus = mapUserToUserPublicSearchResult(user)
-	return {
-		...userWithFriendStatus,
-		friends: user.friendRequestsSent.
-	}
-
-}*/

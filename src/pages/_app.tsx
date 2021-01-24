@@ -18,6 +18,7 @@ function handleExitComplete() {
 		window.scrollTo({ top: 0 })
 	}
 }
+// TODO: fix slow loading https://stackoverflow.com/questions/60755316/nextjs-getserversideprops-show-loading
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter()
