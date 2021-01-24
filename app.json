@@ -5,6 +5,9 @@
     },
     {
       "plan": "heroku-redis:hobby-dev"
+    },
+    {
+      "plan": "papertrail:choklad"
     }
   ],
   "name": "Let's Watch It Together",
