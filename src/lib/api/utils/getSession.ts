@@ -1,28 +1,46 @@
 import { Session } from 'next-auth'
-import {
-	getSession as getSessionNextAuth,
-	useSession as useSessionNextAuth
-} from 'next-auth/client'
+import {getToken} from 'next-auth/jwt'
+import { createLogger, LoggerTypes } from '../../logger'
+import { NextApiRequest } from 'next'
 
 /** NextAuth's client with the added user's id. */
-export type SessionWithId = Session & {user: {id: number}}
+export type SessionWithId = Session & { user: { id: number } }
+
+const loggerWithoutCallsiteInfo = createLogger(
+	LoggerTypes.GetSession,
+	false
+)
+const loggerWithCallsiteInfo = createLogger(
+	LoggerTypes.GetSession,
+	true
+)
 
 /**
  * Server code.
  */
 export async function getSession(
-	param?: Parameters<(typeof getSessionNextAuth)>[0]
+	// param?: Parameters<(typeof getSessionNextAuth)>[0]
+	param?: { req: NextApiRequest }
 ): Promise<SessionWithId> {
-	return await getSessionNextAuth(param) as any as Promise<SessionWithId>
-}
-
-/**
- * Client code.
- */
-export function useSession():
-	[SessionWithId | null | undefined, boolean]
-{
-	const [session, loading] =
-		useSessionNextAuth() as any as [SessionWithId | null | undefined, boolean]
-	return [session, loading]
+	// const gotSession =
+	// 	await getSessionNextAuth(param) as any as Promise<SessionWithId>
+	const gotToken = await getToken(
+		{
+			req: param.req,
+			secret: process.env.SECRET
+		}
+	)
+	if (gotToken) {
+		loggerWithoutCallsiteInfo.debug({
+			msg: `got token`,
+			gotToken
+		})
+	} else {
+		loggerWithCallsiteInfo.debug({
+			msg: `no token found`,
+			param,
+			gotToken
+		})
+	}
+	return {user: gotToken} as SessionWithId
 }

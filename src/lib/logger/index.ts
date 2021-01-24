@@ -20,6 +20,7 @@ export enum LoggerTypes {
 	ProtectedApiHandler='pah',
 	IsShowLiked='isl',
 	NewMeetingGetServerSideProps='nmgssp',
+	GetSession='gs'
 }
 
 export function createLogger(

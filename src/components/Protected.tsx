@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { PropsWithChildren } from 'react'
-import {useSession} from '../lib/api/utils/getSession'
+import {useSession} from '../lib/api/utils/useSession'
 
 export default function Protected(
 	{

@@ -1,0 +1,18 @@
+/*
+https://github.com/prisma/prisma/issues/5161#issuecomment-766360458
+import prisma from 'lib/prisma/prisma'
+import initiateDb from './seeding/initiateDb'
+
+async function main() {
+	initiateDb(prisma)
+}
+
+if (require.main === module) {
+	main().catch(e => {
+		console.error(e)
+		process.exit(1)
+	})
+		.finally(async () => {
+			prisma.$disconnect()
+		})
+}*/
