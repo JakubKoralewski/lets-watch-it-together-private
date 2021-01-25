@@ -1,4 +1,4 @@
-import { Meeting, MeetingState, User, TmdbMediaType } from '@prisma/client'
+import { Meeting, MeetingState, User } from '@prisma/client'
 import { prismaTmdbMediaTypeToPrivate, TmdbId, TmdbIdType } from '../../tmdb/api/id'
 import assertUnreachable from '../../utils/assertUnreachable'
 

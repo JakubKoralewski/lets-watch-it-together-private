@@ -1,7 +1,11 @@
 import getShowDetails, { GetShowDetailsErrorType, isGetShowDetailsError } from '../getShowDetails'
 import { TmdbIdType } from '../../../tmdb/api/id'
 import prisma from '../../../prisma/prisma'
-import { TmdbMediaType, User } from '@prisma/client'
+import type { User } from '@prisma/client'
+// FIXME: whole @prisma/client gets bundled in the client-side package
+//        but the below enum is the only thing getting imported
+//        webpack tree-shaking?
+import { TmdbMediaType } from '@prisma/client'
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime'
 import { ErrorInLibWithLogging, LibErrorType } from '../../../logger/libLogger'
 
