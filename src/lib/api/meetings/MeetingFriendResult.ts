@@ -1,5 +1,7 @@
-import { Meeting, MeetingState, User } from '@prisma/client'
-import { prismaTmdbMediaTypeToPrivate, TmdbId, TmdbIdType } from '../../tmdb/api/id'
+import { MeetingState } from '@prisma/client'
+import type { Meeting, User } from '@prisma/client'
+import type { TmdbId } from '../../tmdb/api/id'
+import { prismaTmdbMediaTypeToPrivate, TmdbIdType } from '../../tmdb/api/id'
 import assertUnreachable from '../../utils/assertUnreachable'
 
 export enum MeetingFriendPublicEnum {

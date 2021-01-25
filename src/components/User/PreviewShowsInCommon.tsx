@@ -1,7 +1,9 @@
-import { deserializeId, serializeId, TmdbId, TmdbIdSerialized } from '../../lib/tmdb/api/id'
+import { serializeId } from '../../lib/tmdb/api/id'
+import type { TmdbId } from '../../lib/tmdb/api/id'
 import { Container, Paper, Tab, Tabs } from '@material-ui/core'
-import ShowSmall, { ShowSmallProps } from '../Show/ShowSmall'
-import { StrippedShowDetails } from '../../lib/api/shows/[id]/StrippedShowDetails'
+import ShowSmall from '../Show/ShowSmall'
+import type { ShowSmallProps } from '../Show/ShowSmall'
+import type { StrippedShowDetails } from '../../lib/api/shows/[id]/StrippedShowDetails'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import assertUnreachable from '../../lib/utils/assertUnreachable'
@@ -35,7 +37,7 @@ export default function PreviewShowsInCommon(
 	let selectPropsForShowSmallGenerate:
 		((id: TmdbId) => ShowSmallProps['selected']) | (() => undefined) = (_) => undefined
 
-	if(selected) {
+	if (selected) {
 		selectPropsForShowSmallGenerate = (id: TmdbId) => ({
 			onSelect: selected.onOneSelected,
 			isSelected: selected.isSelected(id)
@@ -111,7 +113,7 @@ export default function PreviewShowsInCommon(
 					onChange={handleChange}
 				>
 					<Tab label="Shows you both like" />
-{/*
+					{/*
 					<Tab label="View all their liked shows" />
 */}
 				</Tabs>

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { TmdbMovieId } from '../id'
+import type { TmdbMovieId } from '../id'
 
 export interface Movie {
 	id: TmdbMovieId;

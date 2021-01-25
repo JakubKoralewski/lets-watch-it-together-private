@@ -9,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from 'theme'
 import store from 'store'
 import { motion } from 'framer-motion'
-import { AppProps } from 'next/app'
+import type { AppProps } from 'next/app'
 import { Provider as NextAuthProvider } from 'next-auth/client'
 
 // https://github.com/vercel/next.js/blob/canary/examples/with-framer-motion/pages/_app.js

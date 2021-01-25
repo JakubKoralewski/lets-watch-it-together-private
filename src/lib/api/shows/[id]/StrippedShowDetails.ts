@@ -1,4 +1,4 @@
-import { TMDBTvGetDetailsResponse } from '../../../tmdb/api/tv_get_details'
+import type { TMDBTvGetDetailsResponse } from '../../../tmdb/api/tv_get_details'
 
 export type StrippedShowDetails = Pick<
 	TMDBTvGetDetailsResponse,

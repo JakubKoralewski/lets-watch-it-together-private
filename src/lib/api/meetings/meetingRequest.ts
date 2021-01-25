@@ -1,5 +1,5 @@
 import prisma from 'lib/prisma/prisma'
-import { Meeting, FriendshipType, User } from '@prisma/client'
+import type { Meeting, FriendshipType, User } from '@prisma/client'
 import { ErrorInLibWithLogging, LibErrorType } from '../../logger/libLogger'
 
 export enum MeetingRequestErrorType {

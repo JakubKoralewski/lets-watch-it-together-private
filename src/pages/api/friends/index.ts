@@ -1,6 +1,6 @@
 import { constants } from 'http2'
 import { getFriends } from '../../../lib/api/friends/getFriends'
-import { YourFriend } from '../../../lib/api/friends/mapFriendsDbToClient'
+import type { YourFriend } from '../../../lib/api/friends/mapFriendsDbToClient'
 import { protectedApiHandler } from '../../../lib/api/utils/protectedApiHandler'
 
 const {

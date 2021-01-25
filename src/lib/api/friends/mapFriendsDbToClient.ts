@@ -1,5 +1,5 @@
-import { FriendRequests, User } from '@prisma/client'
-import { UserPublicSearchResult } from '../users/UserPublic'
+import type { FriendRequests, User } from '@prisma/client'
+import type { UserPublicSearchResult } from '../users/UserPublic'
 import { FriendshipTypeResponse } from '../users/[id]/FriendshipType'
 
 export type YourFriend =

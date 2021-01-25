@@ -1,12 +1,11 @@
 import { Box, InputAdornment, makeStyles, TextField } from '@material-ui/core'
 import { useEffect, useRef, useState } from 'react'
-import { UserPublicSearchResult } from '../../../lib/api/users/UserPublic'
+import type { UserPublicSearchResult } from '../../../lib/api/users/UserPublic'
 import useDebounced from '../../../lib/utils/useDebounced'
 import { AccountCircle, Search } from '@material-ui/icons'
-import { Skeleton } from '@material-ui/lab'
 import UserSmall from '../../User/UserSmall'
-import { GoToNextStageProps, NextOrSkipWrapper } from './NextOrSkipWrapper'
-import { User } from 'next-auth'
+import { NextOrSkipWrapper } from './NextOrSkipWrapper'
+import type { GoToNextStageProps } from './NextOrSkipWrapper'
 
 
 export const useFriendsStyles = makeStyles((theme) => ({

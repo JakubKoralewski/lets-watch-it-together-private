@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { TmdbSeasonId } from '../id'
+import type { TmdbSeasonId } from '../id'
 
 export interface Season {
 	id: TmdbSeasonId;

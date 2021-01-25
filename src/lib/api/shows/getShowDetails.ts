@@ -1,6 +1,8 @@
-import tmdb, { isTmdbError, TmdbErrorTmdbResponse, TmdbErrorType, TmdbPath, TvGetDetails } from 'lib/tmdb/tmdb'
-import { TMDBTvGetDetailsResponse } from '../../tmdb/api/tv_get_details'
-import { TmdbId, TmdbIdType } from '../../tmdb/api/id'
+import tmdb, { isTmdbError, TmdbErrorType } from 'lib/tmdb/tmdb'
+import type { TmdbErrorTmdbResponse, TmdbPath, TvGetDetails } from 'lib/tmdb/tmdb'
+import type { TMDBTvGetDetailsResponse } from '../../tmdb/api/tv_get_details'
+import { TmdbIdType } from '../../tmdb/api/id'
+import type { TmdbId } from '../../tmdb/api/id'
 import { ErrorInLibWithLogging, LibErrorType } from '../../logger/libLogger'
 
 export enum GetShowDetailsErrorType {

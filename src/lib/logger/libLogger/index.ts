@@ -1,5 +1,5 @@
 import { createLogger, LoggerTypes } from '..'
-import { Logger } from 'pino'
+import type { Logger } from 'pino'
 
 const libLogger =
 	createLogger(LoggerTypes.LibUtils)

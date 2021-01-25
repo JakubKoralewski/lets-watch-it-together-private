@@ -1,4 +1,4 @@
-import { UserPublicSearchResult } from '../users/UserPublic'
+import type { UserPublicSearchResult } from '../users/UserPublic'
 import { FriendshipTypeResponse } from '../users/[id]/FriendshipType'
 
 export function isFriend(user: UserPublicSearchResult): boolean{

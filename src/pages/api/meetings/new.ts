@@ -1,7 +1,7 @@
 import { constants } from 'http2'
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 import { protectedApiHandler } from 'lib/api/utils/protectedApiHandler'
-import { NextApiRequest } from 'next'
+import type { NextApiRequest } from 'next'
 import { getIdAsNumber } from 'lib/api/utils/validation'
 import {
 	isLikeShowError,

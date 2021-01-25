@@ -1,4 +1,4 @@
-import { UserDetails as IUserDetails } from '../../lib/api/users/UserDetails'
+import type { UserDetails as IUserDetails } from '../../lib/api/users/UserDetails'
 import UserSmall from './UserSmall'
 import { Typography, Container } from '@material-ui/core'
 import prettyDate from '../../lib/client/prettyDate'

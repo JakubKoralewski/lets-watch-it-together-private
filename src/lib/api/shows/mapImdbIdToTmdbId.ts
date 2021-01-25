@@ -1,6 +1,8 @@
-import tmdb, { Find, TmdbPath } from 'lib/tmdb/tmdb'
-import { TMDBFindResponse } from '../../tmdb/api/find'
-import { ImdbMediaId, TmdbId, TmdbIdType } from '../../tmdb/api/id'
+import tmdb from 'lib/tmdb/tmdb'
+import type { Find, TmdbPath } from 'lib/tmdb/tmdb'
+import type { TMDBFindResponse } from '../../tmdb/api/find'
+import { TmdbIdType } from '../../tmdb/api/id'
+import type { ImdbMediaId, TmdbId } from '../../tmdb/api/id'
 import { ErrorInLibWithLogging, LibErrorType } from '../../logger/libLogger'
 
 enum MapImdbIdToTmdbIdErrorType {

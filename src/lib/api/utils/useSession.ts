@@ -1,5 +1,5 @@
 import { useSession as useSessionNextAuth } from 'next-auth/client'
-import { SessionWithId } from './getSession'
+import type { SessionWithId } from './getSession'
 
 /**
  * Client code.

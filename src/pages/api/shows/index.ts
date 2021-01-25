@@ -1,11 +1,11 @@
 import { constants } from 'http2'
-import { ApiShowsRequest } from 'lib/api/shows/ApiShowsRequest'
+import type { ApiShowsRequest } from 'lib/api/shows/ApiShowsRequest'
 import mapImdbIdToTmdbId from 'lib/api/shows/mapImdbIdToTmdbId'
 import getShowDetails from 'lib/api/shows/getShowDetails'
 import { stripDetails, StrippedShowDetails } from
 	'lib/api/shows/[id]/StrippedShowDetails'
-import { ImdbMediaId } from 'lib/tmdb/api/id'
-import { TMDBTvGetDetailsResponse } from 'lib/tmdb/api/tv_get_details'
+import type { ImdbMediaId } from 'lib/tmdb/api/id'
+import type { TMDBTvGetDetailsResponse } from 'lib/tmdb/api/tv_get_details'
 import { mapShowLiked } from 'lib/api/shows/[id]/isShowLiked'
 import { protectedApiHandler } from '../../../lib/api/utils/protectedApiHandler'
 

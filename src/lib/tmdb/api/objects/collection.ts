@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { TmdbCollectionId } from '../id'
+import type { TmdbCollectionId } from '../id'
 
 export interface Collection {
 	id: TmdbCollectionId;

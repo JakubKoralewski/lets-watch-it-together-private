@@ -1,7 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { getSession, SessionWithId } from './getSession'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { getSession } from './getSession'
+import type { SessionWithId } from './getSession'
 import { constants } from 'http2'
-import { apiLogger, NextApiResponseWithEnforcedLogging } from '../../logger/apiLogger'
+import { apiLogger } from '../../logger/apiLogger'
+import type { NextApiResponseWithEnforcedLogging } from '../../logger/apiLogger'
 
 const { HTTP_STATUS_UNAUTHORIZED } = constants
 

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { TmdbCompanyId } from '../id'
+import type { TmdbCompanyId } from '../id'
 
 export interface Company {
 	id: TmdbCompanyId;

@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import type { PropsWithChildren } from 'react'
 import { Button, Container } from '@material-ui/core'
 
 export interface GoToNextStageProps {

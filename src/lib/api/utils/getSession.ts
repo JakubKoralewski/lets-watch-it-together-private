@@ -1,8 +1,8 @@
-import { Session } from 'next-auth'
+import type { Session } from 'next-auth'
 import {getToken} from 'next-auth/jwt'
 import { createLogger, LoggerTypes } from '../../logger'
-import { NextApiRequest } from 'next'
-import { IncomingMessage } from 'http'
+import type { NextApiRequest } from 'next'
+import type { IncomingMessage } from 'http'
 
 /** NextAuth's client with the added user's id. */
 export type SessionWithId = Session & { user: { id: number } }
