@@ -1,4 +1,5 @@
-import { PrismaClient, Prisma } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
+import type { Prisma } from '@prisma/client'
 import { createLogger, LoggerTypes } from '../logger'
 
 const loggerWithCallSiteInfo = createLogger(LoggerTypes.Prisma, true)

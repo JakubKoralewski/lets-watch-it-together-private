@@ -1,10 +1,11 @@
 import prisma from 'lib/prisma/prisma'
-import { FriendRequests, FriendshipType, User } from '@prisma/client'
+import type { FriendRequests, User } from '@prisma/client'
+import { FriendshipType } from '@prisma/client'
 import {
 	toFriendRequestReceived as toFriendRequestReceivedInner,
 	toFriendRequestSent as toFriendRequestSentInner,
-	YourFriend
 } from './mapFriendsDbToClient'
+import type { YourFriend } from './mapFriendsDbToClient'
 import { ErrorInLibWithLogging, LibErrorType } from '../../logger/libLogger'
 
 export enum GetFriendsErrorType {

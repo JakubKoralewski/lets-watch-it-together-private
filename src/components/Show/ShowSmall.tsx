@@ -11,7 +11,7 @@ import {
 	useRef,
 	useState
 } from 'react'
-import {
+import type {
 	StrippedShowDetails
 } from '../../lib/api/shows/[id]/StrippedShowDetails'
 

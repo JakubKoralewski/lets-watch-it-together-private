@@ -1,5 +1,5 @@
-import { NextApiResponseWithEnforcedLogging } from '../../logger/apiLogger'
-import { NextApiRequest } from 'next'
+import type { NextApiResponseWithEnforcedLogging } from '../../logger/apiLogger'
+import type { NextApiRequest } from 'next'
 import { constants } from 'http2'
 const { HTTP_STATUS_BAD_REQUEST } = constants
 

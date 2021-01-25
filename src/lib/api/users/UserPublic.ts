@@ -1,7 +1,9 @@
 import {
 	FriendshipTypeResponse
 } from './[id]/FriendshipType'
-import { FriendshipType, User, Prisma } from '@prisma/client'
+import type { User, Prisma } from '@prisma/client'
+// FIXME: this is another place we use a @prisma/client import
+import { FriendshipType } from '@prisma/client'
 import { mapUserToKnownFriend } from './UserDetails'
 import { createLogger, LoggerTypes } from '../../logger'
 

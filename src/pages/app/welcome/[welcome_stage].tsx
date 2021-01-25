@@ -4,7 +4,7 @@ import Layout from '../../../components/Layout'
 import { WelcomeInner } from './index'
 import { useEffect } from 'react'
 import { Stages } from '../../../components/pages/welcome/stages'
-import { NextPageContext } from 'next'
+import type { NextPageContext } from 'next'
 
 export const stagesToPathsMap = {
 	[Stages.AddFriends]: 'add-friends',

@@ -1,7 +1,7 @@
-import {  UserPublicSearchResult } from './UserPublic'
-import { User } from '@prisma/client'
-import { MeetingFriendResult } from '../meetings/MeetingFriendResult'
-import { StrippedShowDetails } from '../shows/[id]/StrippedShowDetails'
+import type { UserPublicSearchResult } from './UserPublic'
+import type { User } from '@prisma/client'
+import type { MeetingFriendResult } from '../meetings/MeetingFriendResult'
+import type { StrippedShowDetails } from '../shows/[id]/StrippedShowDetails'
 
 /**
  *  We omit status because we know they're a friend already

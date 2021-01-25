@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { UserPublicSearchResult } from '../../lib/api/users/UserPublic'
+import type { UserPublicSearchResult } from '../../lib/api/users/UserPublic'
 
 const initialState = {
 	users: {} as Record<number, UserPublicSearchResult | undefined>

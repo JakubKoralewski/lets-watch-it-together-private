@@ -1,13 +1,15 @@
-import React, { MutableRefObject, PropsWithChildren } from 'react'
+import React from 'react'
+import type { MutableRefObject, PropsWithChildren } from 'react'
 import clsx from 'clsx'
-import { Router, useRouter } from 'next/router'
+import type { Router } from 'next/router'
+import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import MuiLink from '@material-ui/core/Link'
-import { TypographyTypeMap } from '@material-ui/core'
+import type { TypographyTypeMap } from '@material-ui/core'
 
 interface NextComposedProps {
-	as?: string | object
-	href: string | object
+	as?: string | Record<string, unknown>
+	href: string | Record<string, unknown> | Router
 	prefetch?: boolean
 	className?: string
 }
@@ -26,7 +28,7 @@ const NextComposed = React.forwardRef<HTMLAnchorElement, NextComposedProps>(
 
 interface LinkProps {
 	activeClassName?: string
-	as?: string | object
+	as?: string | Record<string, unknown>
 	className?: string
 	href: string | Router
 	innerRef:

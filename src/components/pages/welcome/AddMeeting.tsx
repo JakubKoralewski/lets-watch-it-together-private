@@ -1,9 +1,10 @@
 import { Box, Typography } from '@material-ui/core'
 import { useEffect, useState } from 'react'
-import { UserPublicSearchResult } from 'lib/api/users/UserPublic'
+import type { UserPublicSearchResult } from 'lib/api/users/UserPublic'
 import { Skeleton } from '@material-ui/lab'
 import UserSmall from '../../User/UserSmall'
-import { GoToNextStageProps, NextOrSkipWrapper } from './NextOrSkipWrapper'
+import { NextOrSkipWrapper } from './NextOrSkipWrapper'
+import type { GoToNextStageProps } from './NextOrSkipWrapper'
 import { useFriendsStyles } from './AddFriends'
 import { AnimatePresence, motion } from 'framer-motion'
 

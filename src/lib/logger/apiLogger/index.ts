@@ -1,6 +1,6 @@
 import process from "process"
-import { NextApiRequest, NextApiResponse } from 'next'
-import {Logger} from 'pino'
+import type { NextApiRequest, NextApiResponse } from 'next'
+import type { Logger} from 'pino'
 import { LoggerTypes, createLogger } from '..'
 
 /**

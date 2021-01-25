@@ -10,10 +10,10 @@ import { useRouter } from 'next/router'
 import Protected from 'components/Protected'
 import Layout from 'components/Layout'
 import theme from 'theme'
-import { GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
 import { getUserDetails } from 'lib/api/users/[id]/getUserDetails'
 import UserDetailsView from 'components/User/UserDetailsView'
-import { UserDetails } from 'lib/api/users/UserDetails'
+import type { UserDetails } from 'lib/api/users/UserDetails'
 import PreviewShowsInCommon, {
 	PreviewShowsInCommonProps
 } from 'components/User/PreviewShowsInCommon'
@@ -25,10 +25,10 @@ import { getSession } from 'lib/api/utils/getSession'
 import {
 	useState
 } from 'react'
-import {
+import type {
 	StrippedShowDetails
 } from 'lib/api/shows/[id]/StrippedShowDetails'
-import {
+import type {
 	TmdbId
 } from 'lib/tmdb/api/id'
 import ShowSmall from 'components/Show/ShowSmall'
@@ -41,7 +41,7 @@ import {
 } from '@material-ui/pickers'
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { TransitionProps } from '@material-ui/core/transitions';
+import type { TransitionProps } from '@material-ui/core/transitions';
 import { Alert } from '@material-ui/lab'
 
 function SlideTransition(props: TransitionProps) {

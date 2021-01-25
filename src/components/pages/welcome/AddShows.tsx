@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import {
+import type {
 	ImdbMediaId,
-	serializeId,
 } from '../../../lib/tmdb/api/id'
 import {
+	serializeId,
+} from '../../../lib/tmdb/api/id'
+import type {
 	StrippedShowDetails
 } from '../../../lib/api/shows/[id]/StrippedShowDetails'
 import {
@@ -16,8 +18,11 @@ import {
 	DropzoneArea
 } from 'material-ui-dropzone'
 import ShowSmall from '../../Show/ShowSmall'
+import type {
+	GoToNextStageProps
+} from './NextOrSkipWrapper'
 import {
-	GoToNextStageProps, NextOrSkipWrapper
+	NextOrSkipWrapper
 } from './NextOrSkipWrapper'
 import {
 	useFriendsStyles

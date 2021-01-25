@@ -22,7 +22,7 @@ if (require.main === module) {
 		}
 	}
 }
-import { PrismaClient, User } from '@prisma/client'
+import type { PrismaClient, User } from '@prisma/client'
 import prisma from 'lib/prisma/prisma'
 import { likeShow, LikeShowActionType } from '../../src/lib/api/shows/[id]/likeShow'
 /* eslint-disable no-console */

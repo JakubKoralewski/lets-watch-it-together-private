@@ -1,4 +1,4 @@
-import { UserDetails } from '../users/UserDetails'
+import type { UserDetails } from '../users/UserDetails'
 
 export type UseEntityReturnType<
 	EntityName extends string,

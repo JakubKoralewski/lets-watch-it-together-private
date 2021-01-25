@@ -1,7 +1,8 @@
 import useSWR from "swr"
-import {User} from "@prisma/client"
-import { getFetcher, UseEntityReturnType } from '../../utils/useSwrUtils'
-import { UserDetails } from '../UserDetails'
+import type {User} from "@prisma/client"
+import { getFetcher } from '../../utils/useSwrUtils'
+import type { UseEntityReturnType } from '../../utils/useSwrUtils'
+import type { UserDetails } from '../UserDetails'
 
 export function useUser (id: User['id']):
 	UseEntityReturnType<'user', UserDetails>

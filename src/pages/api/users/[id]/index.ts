@@ -6,7 +6,7 @@ import {
 } from '../../../../lib/api/users/[id]/getUserDetails'
 import { protectedApiHandler } from '../../../../lib/api/utils/protectedApiHandler'
 import { getIdAsNumber, setMessageAsErrorTypeGenerator } from '../../../../lib/api/utils/validation'
-import { UserDetails } from '../../../../lib/api/users/UserDetails'
+import type { UserDetails } from '../../../../lib/api/users/UserDetails'
 import { createLogger, LoggerTypes } from '../../../../lib/logger'
 
 const logger = createLogger(LoggerTypes.ProtectedApiHandler, true)
