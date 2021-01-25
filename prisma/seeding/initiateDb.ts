@@ -265,22 +265,21 @@ export async function initiateDb(prisma: PrismaClient): Promise<void> {
 }
 
 if (require.main === module) {
-	const disconnect = async () => {
+	const disconnect = async (exitCode=0) => {
 		console.log('disconnecting')
 		await prisma.$disconnect().catch(err => {
 			console.error('error disconnecting', err)
-		}).finally(() => {
-			console.log('disconnected')
 			process.exit(1)
+		}).then(() => {
+			console.log('disconnected')
+			process.exit(exitCode)
 		})
 	}
-	// FIXME: the script doesnt close despite
-	//        trying to close prisma connection...
 	initiateDb(prisma).catch(async err => {
 		console.error(err)
-		await disconnect()
+		await disconnect(1)
 	}).finally(async () => {
 		console.log('Seeding finished without error')
-		await disconnect()
+		await disconnect(0)
 	})
 }
