@@ -9,7 +9,7 @@ import {
 import { useRouter } from 'next/router'
 import Protected from 'components/Protected'
 import Layout from 'components/Layout'
-import theme from 'theme'
+import theme from 'theme/theme'
 import type { GetServerSideProps } from 'next'
 import { getUserDetails } from 'lib/api/users/[id]/getUserDetails'
 import UserDetailsView from 'components/User/UserDetailsView'

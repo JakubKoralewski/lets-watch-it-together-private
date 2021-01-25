@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/client'
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import { createStyles, fade, makeStyles, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -17,6 +17,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { Avatar } from '@material-ui/core'
+import { useSectionStyles } from '../theme/breakpoints'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -72,18 +73,6 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '100%',
 			[theme.breakpoints.up('md')]: {
 				width: '20ch'
-			}
-		},
-		sectionDesktop: {
-			display: 'none',
-			[theme.breakpoints.up('md')]: {
-				display: 'flex'
-			}
-		},
-		sectionMobile: {
-			display: 'flex',
-			[theme.breakpoints.up('md')]: {
-				display: 'none'
 			}
 		},
 		customAvatar: {
@@ -149,6 +138,7 @@ const Header: React.FC = () => {
 	}
 
 	const classes = useStyles()
+	const sectionClasses = useSectionStyles()
 	const [anchorEl, setAnchorEl] =
 		React.useState<null | HTMLElement>(null)
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -266,7 +256,7 @@ const Header: React.FC = () => {
 						/>
 					</div>
 					<div className={classes.grow} />
-					<div className={classes.sectionDesktop}>
+					<div className={sectionClasses.sectionDesktop}>
 						<IconButton
 							aria-label="show 17 new notifications"
 							color="inherit"
@@ -294,7 +284,7 @@ const Header: React.FC = () => {
 							}
 						</IconButton>
 					</div>
-					<div className={classes.sectionMobile}>
+					<div className={sectionClasses.sectionMobile}>
 						<IconButton
 							aria-label="show more"
 							aria-controls={mobileMenuId}

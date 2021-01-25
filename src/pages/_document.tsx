@@ -6,7 +6,7 @@ import {
 	shortDescription,
 	summary,
 } from '../../seo/seo'
-import theme from '../theme'
+import theme from '../theme/theme'
 import { ServerStyleSheets } from '@material-ui/styles'
 
 class MyDocument extends Document {
