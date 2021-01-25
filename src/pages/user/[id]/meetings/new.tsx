@@ -21,6 +21,7 @@ import {
 	createLogger,
 	LoggerTypes
 } from 'lib/logger'
+import { getSession } from 'lib/api/utils/getSession'
 import {
 	useState
 } from 'react'
@@ -69,8 +70,6 @@ export const getServerSideProps: GetServerSideProps =
 		} catch (e) {
 			userId = -1
 		}
-		// import { getSession } from 'lib/api/utils/getSession'
-		const getSession = require('../../../../lib/api/utils/getSession')
 		const session = await getSession(context)
 		if (!session || userId === -1) {
 			return {
