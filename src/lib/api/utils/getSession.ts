@@ -1,7 +1,9 @@
 import { Session } from 'next-auth'
 import {getToken} from 'next-auth/jwt'
 import { createLogger, LoggerTypes } from '../../logger'
-import { NextApiRequest } from 'next'
+import { GetServerSidePropsContext, NextApiRequest } from 'next'
+import { ParsedUrlQuery } from 'querystring'
+import { IncomingMessage } from 'http'
 
 /** NextAuth's client with the added user's id. */
 export type SessionWithId = Session & { user: { id: number } }
@@ -20,13 +22,14 @@ const loggerWithCallsiteInfo = createLogger(
  */
 export async function getSession(
 	// param?: Parameters<(typeof getSessionNextAuth)>[0]
-	param?: { req: NextApiRequest }
+	// param?: { req: NextApiRequest }
+	param?: { req: IncomingMessage & { cookies?: { [key: string]: any; }; } }
 ): Promise<SessionWithId> {
 	// const gotSession =
 	// 	await getSessionNextAuth(param) as any as Promise<SessionWithId>
 	const gotToken = await getToken(
 		{
-			req: param.req,
+			req: param.req as NextApiRequest,
 			secret: process.env.SECRET
 		}
 	)
