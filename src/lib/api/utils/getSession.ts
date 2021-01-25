@@ -1,8 +1,7 @@
 import { Session } from 'next-auth'
 import {getToken} from 'next-auth/jwt'
 import { createLogger, LoggerTypes } from '../../logger'
-import { GetServerSidePropsContext, NextApiRequest } from 'next'
-import { ParsedUrlQuery } from 'querystring'
+import { NextApiRequest } from 'next'
 import { IncomingMessage } from 'http'
 
 /** NextAuth's client with the added user's id. */
