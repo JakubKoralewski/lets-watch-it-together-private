@@ -38,7 +38,13 @@ export function AddFriends(
 	const styles = useFriendsStyles()
 
 	//needs some AudioContext, whatever that means for the moment
-	const {sound} = useSound('/static/mp3/backgroundMusic.mp3', {volume: 0.25});
+	const [play, data] = useSound('/static/mp3/backgroundMusic.mp3', {volume: 0.25});
+
+	useEffect(() => {
+		setTimeout(() => {
+			play()
+		}, 2000)
+	}, [])
 
 	// TODO: maybe get 10 users and show them at beginning?
 	// FIXME: maybe hide, throw away users who dont match anymore?
