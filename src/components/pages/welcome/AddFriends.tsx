@@ -8,7 +8,8 @@ import { NextOrSkipWrapper } from './NextOrSkipWrapper'
 import type { GoToNextStageProps } from './NextOrSkipWrapper'
 
 //sound
-import useSound from 'use-sound';
+import useSound from 'use-sound'
+// import bgSound from '../../../../public/static/mp3/backgroundMusic.mp3'
 
 
 export const useFriendsStyles = makeStyles((theme) => ({
@@ -38,13 +39,37 @@ export function AddFriends(
 	const styles = useFriendsStyles()
 
 	//needs some AudioContext, whatever that means for the moment
-	const [play, data] = useSound('/static/mp3/backgroundMusic.mp3', {volume: 0.25});
+	const [play, data] = useSound(
+		'/static/mp3/backgroundMusic.mp3',
+		{
+			volume: 0.25,
+			onload: () => {
+				console.log('loaded')
+				window.addEventListener('click', () => {
+					console.log('playing', data)
+					play()
+				})
+			}
+		}
+	)
+
+	const audioContext = useRef<AudioContext | null>()
 
 	useEffect(() => {
-		setTimeout(() => {
+		if(!data.sound) {
+			return
+		}
+		audioContext.current = new AudioContext()
+		const onClick = () => {
+			console.log('clicked')
+			// audioContext.current.resume().then(() => {
+			console.log('playing', data)
 			play()
-		}, 2000)
-	}, [])
+			// })
+		}
+		window.addEventListener('click', onClick)
+		return () => window.removeEventListener('click', onClick)
+	}, [data])
 
 	// TODO: maybe get 10 users and show them at beginning?
 	// FIXME: maybe hide, throw away users who dont match anymore?
