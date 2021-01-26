@@ -7,6 +7,6 @@ export enum Stages {
 export const stagesDescriptions = {
 	[Stages.AddFriends]: "Add friends",
 	[Stages.AddShows]: "Add shows",
-	[Stages.AddMeeting]: "Create a meeting invite",
-	[Stages.Finished]: "You have finished"
+	[Stages.AddMeeting]: "Choose a friend to meet",
+	[Stages.Finished]: "Create a meeting"
 }
