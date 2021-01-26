@@ -7,6 +7,9 @@ import UserSmall from '../../User/UserSmall'
 import { NextOrSkipWrapper } from './NextOrSkipWrapper'
 import type { GoToNextStageProps } from './NextOrSkipWrapper'
 
+//sound
+import useSound from 'use-sound';
+
 
 export const useFriendsStyles = makeStyles((theme) => ({
 	userSmall: {
@@ -33,6 +36,9 @@ export function AddFriends(
 	}: GoToNextStageProps
 ): JSX.Element {
 	const styles = useFriendsStyles()
+
+	//needs some AudioContext, whatever that means for the moment
+	const {sound} = useSound('/static/mp3/backgroundMusic.mp3', {volume: 0.25});
 
 	// TODO: maybe get 10 users and show them at beginning?
 	// FIXME: maybe hide, throw away users who dont match anymore?
