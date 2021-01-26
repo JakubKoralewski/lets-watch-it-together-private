@@ -1,5 +1,9 @@
 import type { PropsWithChildren } from 'react'
 import { Button, Container } from '@material-ui/core'
+import { useSectionStyles } from '../../../theme/breakpoints'
+import DotsMobileStepper from './steppers/DotsMobileStepper'
+import AlternativeLabelStepper from './steppers/AlternativeLabelStepper'
+import { stagesDescriptions } from './stages'
 
 export interface GoToNextStageProps {
 	nextStage(): void,
@@ -10,6 +14,7 @@ export interface GoToNextStageProps {
 
 	prevStage(): void
 }
+
 /**
  * TODO: https://material-ui.com/components/steppers/
  */
@@ -23,24 +28,41 @@ export function NextOrSkipWrapper(
 	}: PropsWithChildren<GoToNextStageProps>
 ): JSX.Element {
 	const canGoBack = currentStage >= 1
+	const sectionStyles = useSectionStyles()
 
 	return (
 		<Container>
 			<div>{children}</div>
-			<Button
-				color="primary"
-				disabled={!canGoBack}
-				onClick={canGoBack ? prevStage : undefined}
+			<div
+				className={sectionStyles.sectionDesktop}
 			>
-				BACK
-			</Button>
-			<Button
-				variant="contained"
-				color="primary"
-				onClick={nextStage}
-			>
-				NEXT
-			</Button>
+				<Button
+					color="primary"
+					disabled={!canGoBack}
+					onClick={canGoBack ? prevStage : undefined}
+				>
+					BACK
+				</Button>
+				<Button
+					variant="contained"
+					color="primary"
+					onClick={nextStage}
+				>
+					NEXT
+				</Button>
+			</div>
+			<DotsMobileStepper
+				className={sectionStyles.sectionMobile}
+				activeStep={currentStage}
+				steps={stagesDescriptions}
+				handleNext={nextStage}
+				handleBack={prevStage}
+			/>
+			<AlternativeLabelStepper
+				activeStep={currentStage}
+				steps={stagesDescriptions}
+				className={sectionStyles.sectionDesktop}
+			/>
 		</Container>
 	)
 }
