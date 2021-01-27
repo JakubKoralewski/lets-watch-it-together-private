@@ -2,6 +2,10 @@ import { Button, PropTypes } from '@material-ui/core'
 import { FriendshipTypeResponse } from '../../lib/api/users/[id]/FriendshipType'
 import assertUnreachable from '../../lib/utils/assertUnreachable'
 import type { UserPublicSearchResult } from '../../lib/api/users/UserPublic'
+import ButtonWithSound from '../sounds/ButtonWithSound'
+import { SoundPaths } from '../sounds/soundPaths'
+
+
 
 export interface ToggleFriendButtonProps {
 	sendFriendRequest(userId: UserPublicSearchResult['id']): Promise<void>,
@@ -31,14 +35,15 @@ export default function ToggleFriendButton({
 		color: PropTypes.Color
 	) => JSX.Element =
 		(text, onClick, color = 'primary') => (
-			<Button
+			<ButtonWithSound
+				source={SoundPaths.SupposedlyNiceSounding}
 				variant={'contained'}
 				color={color}
 				disabled={false}
 				onClick={onClick}
 			>
 				{text}
-			</Button>
+			</ButtonWithSound>
 		)
 	let buttonText: string
 	let buttonColor: PropTypes.Color = 'primary'

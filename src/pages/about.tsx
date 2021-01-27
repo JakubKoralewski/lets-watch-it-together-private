@@ -6,6 +6,10 @@ import Button from '@material-ui/core/Button';
 import ProTip from 'components/ProTip';
 import Link from 'components/Link';
 import Copyright from 'components/Copyright';
+import ButtonWithSound from '../components/sounds/ButtonWithSound'
+import { SoundPaths } from '../components/sounds/soundPaths'
+
+
 
 export default function About(): JSX.Element {
 	return (
@@ -15,9 +19,9 @@ export default function About(): JSX.Element {
           Next.js example
 				</Typography>
 				<Link href="/" color="secondary">
-					<Button variant="contained" color="primary">
+					<ButtonWithSound source={SoundPaths.SupposedlyNiceSounding} variant="contained" color="primary">
             Go to the main page
-					</Button>
+					</ButtonWithSound>
 				</Link>
 				<ProTip />
 				<Copyright />

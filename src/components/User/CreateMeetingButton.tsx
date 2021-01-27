@@ -1,4 +1,6 @@
 import { Button } from '@material-ui/core'
+import ButtonWithSound from '../sounds/ButtonWithSound'
+import { SoundPaths } from '../sounds/soundPaths'
 
 export interface CreateMeetingButtonProps {
 	onClick(): void
@@ -9,14 +11,15 @@ export default function CreateMeetingButton({
 }: CreateMeetingButtonProps): JSX.Element
 {
 	return (
-		<Button
+		<ButtonWithSound
+			source={SoundPaths.SupposedlyNiceSounding}
 			variant={'contained'}
 			color={'primary'}
 			disabled={false}
 			onClick={onClick}
 		>
 			{`Create meeting`}
-		</Button>
+		</ButtonWithSound>
 	)
 
 }

@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button'
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft'
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight'
 import type { MobileStepperProps } from './stepper_props'
+import ButtonWithSound from '../../../sounds/ButtonWithSound'
+import { SoundPaths } from '../../../sounds/soundPaths'
 
 const useStyles = makeStyles({
 	root: {
@@ -36,24 +38,26 @@ export default function DotsMobileStepper(
 				[classes.root].concat(className ? [className] : []).join(' ')
 			}
 			nextButton={
-				<Button
+				<ButtonWithSound
+					source={SoundPaths.SupposedlyNiceSounding}
 					size="small"
 					onClick={handleNext}
 					disabled={activeStep === 5}
 				>
 					Next
 					{theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-				</Button>
+				</ButtonWithSound>
 			}
 			backButton={
-				<Button
+				<ButtonWithSound
+					source={SoundPaths.SupposedlyNiceSounding}
 					size="small"
 					onClick={handleBack}
 					disabled={activeStep === 0}
 				>
 					{theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
 					Back
-				</Button>
+				</ButtonWithSound>
 			}
 		/>
 	)
