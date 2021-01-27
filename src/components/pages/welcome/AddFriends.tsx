@@ -1,11 +1,16 @@
 import { Box, InputAdornment, makeStyles, TextField } from '@material-ui/core'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import type { UserPublicSearchResult } from '../../../lib/api/users/UserPublic'
 import useDebounced from '../../../lib/utils/useDebounced'
 import { AccountCircle, Search } from '@material-ui/icons'
 import UserSmall from '../../User/UserSmall'
 import { NextOrSkipWrapper } from './NextOrSkipWrapper'
 import type { GoToNextStageProps } from './NextOrSkipWrapper'
+
+//sound
+import useSound from 'use-sound'
+import BackgroundMusic from 'components/BackgroundMusic'
+// import bgSound from '../../../../public/static/mp3/backgroundMusic.mp3'
 
 
 export const useFriendsStyles = makeStyles((theme) => ({
@@ -159,6 +164,7 @@ export function AddFriends(
 						)
 				}
 			</Box>
+			<BackgroundMusic source={'/static/mp3/backgroundMusic.mp3'}/>
 		</NextOrSkipWrapper>
 	)
 }
