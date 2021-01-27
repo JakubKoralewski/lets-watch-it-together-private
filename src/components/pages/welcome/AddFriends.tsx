@@ -38,23 +38,24 @@ export function AddFriends(
 ): JSX.Element {
 	const styles = useFriendsStyles()
 
-	//needs some AudioContext, whatever that means for the moment
 	const [play, data] = useSound(
 		'/static/mp3/backgroundMusic.mp3',
 		{
-			volume: 0.25,
+			volume: 0.1,
 			onload: () => {
-				console.log('loaded')
-				window.addEventListener('click', () => {
-					console.log('playing', data)
-					play()
-				})
+				console.log('audio loaded')
 			}
 		}
 	)
 
 	const audioContext = useRef<AudioContext | null>()
 
+	const [isPlaying, setIsPlaying] = useState(false);
+
+	//causes memory leaks in other components, but hey
+	//@JakubKoralewski *probably* took it from there, if not
+	//you're welcome to read it
+	//https://dev.to/vvo/how-to-solve-window-is-not-defined-errors-in-react-and-next-js-5f97
 	useEffect(() => {
 		if(!data.sound) {
 			return
@@ -62,10 +63,11 @@ export function AddFriends(
 		audioContext.current = new AudioContext()
 		const onClick = () => {
 			console.log('clicked')
-			// audioContext.current.resume().then(() => {
 			console.log('playing', data)
-			play()
-			// })
+			if(!isPlaying){
+				play()
+				setIsPlaying(!isPlaying);
+			}
 		}
 		window.addEventListener('click', onClick)
 		return () => window.removeEventListener('click', onClick)
