@@ -9,6 +9,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { makeStyles } from '@material-ui/core/styles'
 import { getProviders, signIn, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
+import MonkeAudio from 'components/MonkeAudio'
+
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -91,6 +93,7 @@ export default function Index({ providers }: ProvidersProps) {
 			<Box mt={8}>
 				<Copyright />
 			</Box>
+			<MonkeAudio source={'/static/mp3/backgroundMusic.mp3'} />
 		</Container>
 	)
 }
