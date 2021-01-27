@@ -1,8 +1,9 @@
+import type { None } from 'framer-motion';
 import {useEffect, useRef} from 'react';
 
 import useSound from 'use-sound';
 
-export default function BackgroundMusic(props){
+export default function BackgroundMusic(props: {source: string}): None{
 	const {source} = props;
 	const [play, data] = useSound(
 		source,
