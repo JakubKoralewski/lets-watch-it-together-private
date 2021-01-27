@@ -9,7 +9,8 @@ import type { GoToNextStageProps } from './NextOrSkipWrapper'
 
 //sound
 import useSound from 'use-sound'
-import BackgroundMusic from 'components/BackgroundMusic'
+import BackgroundMusic from 'components/sounds/BackgroundMusic'
+import { SoundPaths } from '../../sounds/soundPaths'
 // import bgSound from '../../../../public/static/mp3/backgroundMusic.mp3'
 
 
@@ -164,7 +165,7 @@ export function AddFriends(
 						)
 				}
 			</Box>
-			<BackgroundMusic source={'/static/mp3/backgroundMusic.mp3'}/>
+			<BackgroundMusic source={SoundPaths.BgMusic}/>
 		</NextOrSkipWrapper>
 	)
 }

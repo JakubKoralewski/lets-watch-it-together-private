@@ -4,6 +4,8 @@ import { useSectionStyles } from '../../../theme/breakpoints'
 import DotsMobileStepper from './steppers/DotsMobileStepper'
 import AlternativeLabelStepper from './steppers/AlternativeLabelStepper'
 import { stagesDescriptions } from './stages'
+import ButtonWithSound from '../../sounds/ButtonWithSound'
+import { SoundPaths } from '../../sounds/soundPaths'
 
 export interface GoToNextStageProps {
 	nextStage(): void,
@@ -36,20 +38,22 @@ export function NextOrSkipWrapper(
 			<div
 				className={sectionStyles.sectionDesktop}
 			>
-				<Button
+				<ButtonWithSound
+					source={SoundPaths.Dubstep}
 					color="primary"
 					disabled={!canGoBack}
 					onClick={canGoBack ? prevStage : undefined}
 				>
 					BACK
-				</Button>
-				<Button
+				</ButtonWithSound>
+				<ButtonWithSound
+					source={SoundPaths.Dubstep}
 					variant="contained"
 					color="primary"
 					onClick={nextStage}
 				>
 					NEXT
-				</Button>
+				</ButtonWithSound>
 			</div>
 			<DotsMobileStepper
 				className={sectionStyles.sectionMobile}
