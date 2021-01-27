@@ -43,6 +43,9 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import type { TransitionProps } from '@material-ui/core/transitions';
 import { Alert } from '@material-ui/lab'
+import ButtonWithSound from '../../../../components/sounds/ButtonWithSound'
+import { SoundPaths } from '../../../../components/sounds/soundPaths'
+
 
 function SlideTransition(props: TransitionProps) {
 	return <Slide {...props} direction="up" />;
@@ -216,13 +219,14 @@ export default function NewMeetingWithUser(
 				<Alert severity={`success`}>
 					Meeting invite sent
 					<React.Fragment>
-						<Button
+						<ButtonWithSound
+							source={SoundPaths.SupposedlyNiceSounding}
 							color="secondary"
 							size="small"
 							onClick={handleSnackbarClose}
 						>
 							UNDO
-						</Button>
+						</ButtonWithSound>
 						<IconButton
 							size="small"
 							aria-label="close"
@@ -309,7 +313,8 @@ export default function NewMeetingWithUser(
 						</Grid>
 					</Grid>
 					<Container>
-						<Button
+						<ButtonWithSound
+							source={SoundPaths.SupposedlyNiceSounding}
 							variant={`contained`}
 							color={`primary`}
 							onClick={
@@ -328,7 +333,7 @@ export default function NewMeetingWithUser(
 											`Select show` :
 											`Send meeting invite`
 							}
-						</Button>
+						</ButtonWithSound>
 					</Container>
 				</Container>
 			</Layout>

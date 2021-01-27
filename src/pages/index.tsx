@@ -9,6 +9,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { makeStyles } from '@material-ui/core/styles'
 import { getProviders, signIn, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router'
+import ButtonWithSound from '../components/sounds/ButtonWithSound'
+import { SoundPaths } from '../components/sounds/soundPaths'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +46,9 @@ function SignIn({ providers }: ProvidersProps) {
 		<div className={classes.form}>
 			{Object.values(providers).map((provider) => (
 				<div key={provider.name}>
-					<Button
+					<ButtonWithSound
+
+						source={SoundPaths.SupposedlyNiceSounding}
 						type="submit"
 						fullWidth
 						variant="contained"
@@ -53,7 +57,7 @@ function SignIn({ providers }: ProvidersProps) {
 						onClick={() => signIn(provider.id, {callbackUrl: "/app"})}
 					>
 						Sign In with {provider.name}
-					</Button>
+					</ButtonWithSound>
 				</div>
 			))}
 		</div>

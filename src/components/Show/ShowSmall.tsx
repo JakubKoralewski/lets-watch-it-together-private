@@ -14,6 +14,9 @@ import {
 import type {
 	StrippedShowDetails
 } from '../../lib/api/shows/[id]/StrippedShowDetails'
+import ButtonWithSound from '../sounds/ButtonWithSound'
+import { SoundPaths } from '../sounds/soundPaths'
+
 
 export interface ShowSmallProps {
 	show: StrippedShowDetails,
@@ -81,7 +84,8 @@ export default function ShowSmall(
 
 	let selectButton: JSX.Element | null
 	if (selectedInfo) {
-		selectButton = <Button
+		selectButton = <ButtonWithSound
+			source={SoundPaths.SupposedlyNiceSounding}
 			variant={`contained`}
 			color={`secondary`}
 			disabled={selectedInfo.isSelected}
@@ -90,11 +94,12 @@ export default function ShowSmall(
 			{
 				selectedInfo.isSelected ? `Selected` : `Select`
 			}
-		</Button>
+		</ButtonWithSound>
 	}
 	let likeButton: JSX.Element | null
 	if (!disableLiking) {
-		likeButton = <Button
+		likeButton = <ButtonWithSound
+			source={SoundPaths.SupposedlyNiceSounding}
 			variant={!liked ? 'contained' : 'outlined'}
 			color={!liked ? 'primary' : 'secondary'}
 			onClick={() => setLiked(liked => !liked)}
@@ -102,7 +107,7 @@ export default function ShowSmall(
 			{
 				liked ? 'Unlike' : 'Like'
 			}
-		</Button>
+		</ButtonWithSound>
 	}
 
 	return (
