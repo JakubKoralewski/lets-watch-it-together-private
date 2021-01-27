@@ -39,7 +39,7 @@ export function NextOrSkipWrapper(
 				className={sectionStyles.sectionDesktop}
 			>
 				<ButtonWithSound
-					source={SoundPaths.Dubstep}
+					source={SoundPaths.SupposedlyNiceSounding}
 					color="primary"
 					disabled={!canGoBack}
 					onClick={canGoBack ? prevStage : undefined}
@@ -47,7 +47,7 @@ export function NextOrSkipWrapper(
 					BACK
 				</ButtonWithSound>
 				<ButtonWithSound
-					source={SoundPaths.Dubstep}
+					source={SoundPaths.SupposedlyNiceSounding}
 					variant="contained"
 					color="primary"
 					onClick={nextStage}
