@@ -1,5 +1,5 @@
 import { Box, InputAdornment, makeStyles, TextField } from '@material-ui/core'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import type { UserPublicSearchResult } from '../../../lib/api/users/UserPublic'
 import useDebounced from '../../../lib/utils/useDebounced'
 import { AccountCircle, Search } from '@material-ui/icons'
@@ -9,6 +9,7 @@ import type { GoToNextStageProps } from './NextOrSkipWrapper'
 
 //sound
 import useSound from 'use-sound'
+import BackgroundMusic from 'components/BackgroundMusic'
 // import bgSound from '../../../../public/static/mp3/backgroundMusic.mp3'
 
 
@@ -37,41 +38,6 @@ export function AddFriends(
 	}: GoToNextStageProps
 ): JSX.Element {
 	const styles = useFriendsStyles()
-
-	const [play, data] = useSound(
-		'/static/mp3/backgroundMusic.mp3',
-		{
-			volume: 0.1,
-			onload: () => {
-				console.log('audio loaded')
-			}
-		}
-	)
-
-	const audioContext = useRef<AudioContext | null>()
-
-	const [isPlaying, setIsPlaying] = useState(false);
-
-	//causes memory leaks in other components, but hey
-	//@JakubKoralewski *probably* took it from there, if not
-	//you're welcome to read it
-	//https://dev.to/vvo/how-to-solve-window-is-not-defined-errors-in-react-and-next-js-5f97
-	useEffect(() => {
-		if(!data.sound) {
-			return
-		}
-		audioContext.current = new AudioContext()
-		const onClick = () => {
-			console.log('clicked')
-			console.log('playing', data)
-			if(!isPlaying){
-				play()
-				setIsPlaying(!isPlaying);
-			}
-		}
-		window.addEventListener('click', onClick)
-		return () => window.removeEventListener('click', onClick)
-	}, [data])
 
 	// TODO: maybe get 10 users and show them at beginning?
 	// FIXME: maybe hide, throw away users who dont match anymore?
@@ -198,6 +164,7 @@ export function AddFriends(
 						)
 				}
 			</Box>
+			<BackgroundMusic source={'/static/mp3/backgroundMusic.mp3'}/>
 		</NextOrSkipWrapper>
 	)
 }
