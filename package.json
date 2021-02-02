@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "scripts": {
     "analyze": "cross-env ANALYZE=true npm run build",
-    "dev": "cross-env NODE_OPTIONS='--inspect' next dev | npx pino-pretty -t -f",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc --pretty --noEmit",

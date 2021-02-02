@@ -189,7 +189,7 @@ const options: InitOptions = {
 					...session.user,
 					id: (token as Record<string, unknown>)['id'],
 					image: token.image
-				}
+				};
 
 			return Promise.resolve(session)
 		},
