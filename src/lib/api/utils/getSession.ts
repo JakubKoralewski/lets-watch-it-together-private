@@ -5,7 +5,7 @@ import type { NextApiRequest } from 'next'
 import type { IncomingMessage } from 'http'
 
 /** NextAuth's client with the added user's id. */
-export type SessionWithId = Session & { user: { id: number } }
+export type SessionWithId = Session & { user: { id: number; name: string; image: string } }
 
 const loggerWithoutCallsiteInfo = createLogger(
 	LoggerTypes.GetSession,
