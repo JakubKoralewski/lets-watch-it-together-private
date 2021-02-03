@@ -8,10 +8,12 @@ import { NextOrSkipWrapper } from './NextOrSkipWrapper'
 import type { GoToNextStageProps } from './NextOrSkipWrapper'
 
 //sound
-import useSound from 'use-sound'
 import BackgroundMusic from 'components/sounds/BackgroundMusic'
 import { SoundPaths } from '../../sounds/soundPaths'
-// import bgSound from '../../../../public/static/mp3/backgroundMusic.mp3'
+
+//tooltips
+import { StyledTooltip }  from '../../tooltips/StyledTooltip'
+import { TooltipStrings } from '../../tooltips/tooltipStrings';
 
 
 export const useFriendsStyles = makeStyles((theme) => ({
@@ -113,35 +115,37 @@ export function AddFriends(
 		>
 			<Box>Add Friends</Box>
 			<Box>
-				<TextField
-					id="outlined-basic"
-					label={`Search users${process.env.NODE_ENV === 'development' ? ' (type "my")' : ''}`}
-					variant="outlined"
-					onChange={
-						(e) => debouncedSetInput(e.target.value.trim())
-					}
-					InputProps={{
-						startAdornment: (
-							<InputAdornment position="start">
-								<AccountCircle />
-							</InputAdornment>
-						),
-						endAdornment: (
-							<InputAdornment position="end">
-								<Search
-									className={styles.clickable}
-									onClick={
-										() => search(searchString)
-									}
-								/>
-							</InputAdornment>
-						)
-					}}
-				/>
+				<StyledTooltip 
+					title={TooltipStrings.searchFriends}
+				>
+					<TextField
+						id="outlined-basic"
+						label={`Search users${process.env.NODE_ENV === 'development' ? ' (type "my")' : ''}`}
+						variant="outlined"
+						onChange={
+							(e) => debouncedSetInput(e.target.value.trim())
+						}
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position="start">
+									<AccountCircle />
+								</InputAdornment>
+							),
+							endAdornment: (
+								<InputAdornment position="end">
+									<Search
+										className={styles.clickable}
+										onClick={
+											() => search(searchString)
+										}
+									/>
+								</InputAdornment>
+							)
+						}}
+					/>
+				</StyledTooltip>
 			</Box>
-			<Box
-				className={styles.usersContainer}
-			>
+			<Box className={styles.usersContainer} >
 				{
 					searching &&
 					[0, 1, 2].map(i =>

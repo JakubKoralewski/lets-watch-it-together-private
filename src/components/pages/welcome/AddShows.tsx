@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import type {
 	ImdbMediaId,
 } from '../../../lib/tmdb/api/id'
@@ -27,6 +27,8 @@ import {
 import {
 	useFriendsStyles
 } from './AddFriends'
+import { StyledTooltip } from 'components/tooltips/StyledTooltip'
+import { TooltipStrings } from 'components/tooltips/tooltipStrings'
 
 export function AddShows(
 	{
@@ -192,18 +194,22 @@ export function AddShows(
 						}}
 					/>
 				</Container>
-				<Box className={styles.usersContainer}>
-					{
-						Object.keys(shows).map(id =>
-							<ShowSmall
-								className={styles.userSmall}
-								key={id}
-								show={shows[id]}
-								onPrimaryActionTaken={onShowLiked}
-							/>
-						)
-					}
-				</Box>
+				<StyledTooltip
+					title={TooltipStrings.showList}
+				>
+					<Box className={styles.usersContainer}>
+						{
+							Object.keys(shows).map(id =>
+								<ShowSmall
+									className={styles.userSmall}
+									key={id}
+									show={shows[id]}
+									onPrimaryActionTaken={onShowLiked}
+								/>
+							)
+						}
+					</Box>
+				</StyledTooltip>
 			</Box>
 		</NextOrSkipWrapper>
 	)
