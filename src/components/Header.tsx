@@ -268,9 +268,12 @@ const Header: React.FC = () => {
 							aria-label="show 17 new notifications"
 							color="inherit"
 						>
-							<Badge badgeContent={17} color="secondary">
-								<NotificationsIcon />
-							</Badge>
+							<StyledTooltip
+								title={TooltipStrings.notificationsButton}>
+								<Badge badgeContent={11} color="secondary">
+									<NotificationsIcon />
+								</Badge>
+							</StyledTooltip>
 						</IconButton>
 						<IconButton
 							edge="end"
