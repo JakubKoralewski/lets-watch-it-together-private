@@ -74,6 +74,15 @@ Set `NODE_ENV` to `development` to disable PWA.
    ```bash
    $ npm run dev-seed
    ```
+   
+   Once you run the above command you should be able to use the `SIGN IN WITH TEST USERS`
+   button. You may see an error after clicking it, but proceed to type either `guest1`
+   or `guest2` (case-insensitive) to login as one of the test users. This should allow
+   you to send friend requests, accept them, send meeting invites etc. in your local
+   development environment.
+   
+   Clicking the `SIGN IN WITH TEST USERS` button without running the above command is
+   currently [undefined behavior](https://en.wikipedia.org/wiki/Undefined_behavior).
 
 4. Start the Next.js app in development mode (with live reload):
 
