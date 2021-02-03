@@ -18,6 +18,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { Avatar } from '@material-ui/core'
 import { useSectionStyles } from '../theme/breakpoints'
+import { StyledTooltip } from './tooltips/StyledTooltip'
+import { TooltipStrings } from './tooltips/tooltipStrings'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -193,11 +195,16 @@ const Header: React.FC = () => {
 			onClose={handleMobileMenuClose}
 		>
 			<MenuItem>
+				
 				<IconButton aria-label="show 11 new notifications" color="inherit">
-					<Badge badgeContent={11} color="secondary">
-						<NotificationsIcon />
-					</Badge>
+					<StyledTooltip
+						title={TooltipStrings.notificationsButton}>
+						<Badge badgeContent={11} color="secondary">
+							<NotificationsIcon />
+						</Badge>
+					</StyledTooltip>
 				</IconButton>
+				
 				<p>Notifications</p>
 			</MenuItem>
 			<MenuItem onClick={handleProfileMenuOpen}>

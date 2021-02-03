@@ -1,5 +1,4 @@
 import {
-	Button,
 	makeStyles
 } from '@material-ui/core'
 import Card from '@material-ui/core/Card'
@@ -16,6 +15,10 @@ import type {
 } from '../../lib/api/shows/[id]/StrippedShowDetails'
 import ButtonWithSound from '../sounds/ButtonWithSound'
 import { SoundPaths } from '../sounds/soundPaths'
+
+//tooltips
+import { StyledTooltip } from '../tooltips/StyledTooltip';
+import { TooltipStrings } from '../tooltips/tooltipStrings';
 
 
 export interface ShowSmallProps {
@@ -111,31 +114,35 @@ export default function ShowSmall(
 	}
 
 	return (
-		<Card
-			className={className}
-			style={{ display: `inline-block` }}
+		<StyledTooltip
+			title={TooltipStrings.showListItemSelect}
 		>
-			<CardContent>
-				<img
-					alt={`${show.name}'s poster`}
-					src={`https://image.tmdb.org/t/p/w200${show.poster_path}`}
-				/>
-				<Typography className={classes.bold}>
-					{show.name}
-				</Typography>
-				{' '}
-				<Typography>
+			<Card
+				className={className}
+				style={{ display: `inline-block` }}
+			>
+				<CardContent>
+					<img
+						alt={`${show.name}'s poster`}
+						src={`https://image.tmdb.org/t/p/w200${show.poster_path}`}
+					/>
+					<Typography className={classes.bold}>
+						{show.name}
+					</Typography>
+					{' '}
+					<Typography>
 					({show.first_air_date.substring(0, 4)})
-				</Typography>
-			</CardContent>
-			<CardActions>
-				{
-					likeButton
-				}
-				{
-					selectButton
-				}
-			</CardActions>
-		</Card>
+					</Typography>
+				</CardContent>
+				<CardActions>
+					{
+						likeButton
+					}
+					{
+						selectButton
+					}
+				</CardActions>
+			</Card>
+		</StyledTooltip>
 	)
 }
