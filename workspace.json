@@ -1,0 +1,119 @@
+{
+  "version": 2,
+  "projects": {
+    "lwit": {
+      "root": "apps/lwit",
+      "sourceRoot": "apps/lwit",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "generatePackageJson": true,
+            "root": "apps/lwit",
+            "outputPath": "dist/apps/lwit"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "base-serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "lwit:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "lwit:build:production",
+              "dev": false
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/workspace:run-commands",
+          "cwd": "apps/lwit",
+          "options": {
+            "commands": [
+              "docker-compose up -d",
+              "nx base-serve lwit"
+            ],
+            "parallel": false
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "lwit:build:production"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/lwit/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/lwit"
+          ],
+          "options": {
+            "jestConfig": "apps/lwit/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lwit-e2e": {
+      "root": "apps/lwit-e2e",
+      "sourceRoot": "apps/lwit-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/lwit-e2e/cypress.json",
+            "tsConfig": "apps/lwit-e2e/tsconfig.e2e.json",
+            "devServerTarget": "lwit:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lwit:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/lwit-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "lwit"
+}
