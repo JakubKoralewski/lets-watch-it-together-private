@@ -19,6 +19,8 @@
 	},
 	"projects": {
 		"lwit": { "tags": [] },
-		"lwit-e2e": { "tags": [], "implicitDependencies": ["lwit"] }
+		"lwit-e2e": { "tags": [], "implicitDependencies": ["lwit"] },
+		"admin": { "tags": [] },
+		"admin-e2e": { "tags": [], "implicitDependencies": ["admin"] }
 	}
 }
