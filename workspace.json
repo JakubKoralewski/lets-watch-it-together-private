@@ -34,6 +34,33 @@
             }
           }
         },
+        "db-seed": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "docker-compose up -d",
+              "echo waiting to close server (http://localhost:3000) to seed the db",
+              "npx wait-on -r http://localhost:3000",
+              "ts-node -r tsconfig-paths/register prisma/seeding/initiateDb.ts"
+            ],
+            "parallel": false,
+            "cwd": "apps/lwit"
+          }
+        },
+        "db-migrate": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "docker-compose up -d",
+              "npx prisma migrate dev --preview-feature",
+              "echo waiting to close server (http://localhost:3000) to seed the db",
+              "npx wait-on -r http://localhost:3000",
+              "ts-node -r tsconfig-paths/register prisma/seeding/initiateDb.ts"
+            ],
+            "cwd": "apps/lwit",
+            "parallel": false
+          }
+        },
         "serve": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
@@ -41,8 +68,8 @@
               "docker-compose up -d",
               "nx base-serve lwit"
             ],
-            "parallel": false,
-            "cwd": "apps/lwit"
+            "cwd": "apps/lwit",
+            "parallel": false
           }
         },
         "export": {
