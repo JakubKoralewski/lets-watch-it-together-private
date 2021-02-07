@@ -35,13 +35,13 @@
         },
         "serve": {
           "builder": "@nrwl/workspace:run-commands",
-          "cwd": "apps/lwit",
           "options": {
             "commands": [
               "docker-compose up -d",
               "nx base-serve lwit"
             ],
-            "parallel": false
+            "parallel": false,
+            "cwd": "apps/lwit"
           }
         },
         "export": {
