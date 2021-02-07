@@ -1,0 +1,26 @@
+{
+	"npmScope": "lets-watch-it-together",
+	"affected": { "defaultBase": "scrum-main" },
+	"implicitDependencies": {
+		"workspace.json": "*",
+		"package.json": { "dependencies": "*", "devDependencies": "*" },
+		"tsconfig.base.json": "*",
+		"tslint.json": "*",
+		".eslintrc.json": "*",
+		"nx.json": "*"
+	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "@nrwl/workspace/tasks-runners/default",
+			"options": {
+				"cacheableOperations": ["build", "lint", "test", "e2e"]
+			}
+		}
+	},
+	"projects": {
+		"lwit": { "tags": [] },
+		"lwit-e2e": { "tags": [], "implicitDependencies": ["lwit"] },
+		"admin": { "tags": [] },
+		"admin-e2e": { "tags": [], "implicitDependencies": ["admin"] }
+	}
+}

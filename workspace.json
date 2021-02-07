@@ -1,0 +1,256 @@
+{
+  "version": 2,
+  "projects": {
+    "lwit": {
+      "root": "apps/lwit",
+      "sourceRoot": "apps/lwit",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "generatePackageJson": true,
+            "root": "apps/lwit",
+            "outputPath": "dist/apps/lwit"
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "base-serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "lwit:build",
+            "dev": true,
+            "port": 3000
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "lwit:build:production",
+              "dev": false
+            }
+          }
+        },
+        "db-seed": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "docker-compose up -d",
+              "echo waiting to close server (http://localhost:3000) to seed the db",
+              "npx wait-on -r http://localhost:3000",
+              "ts-node -r tsconfig-paths/register prisma/seeding/initiateDb.ts"
+            ],
+            "parallel": false,
+            "cwd": "apps/lwit"
+          }
+        },
+        "db-migrate": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "docker-compose up -d",
+              "npx prisma migrate dev --preview-feature",
+              "echo waiting to close server (http://localhost:3000) to seed the db",
+              "npx wait-on -r http://localhost:3000",
+              "ts-node -r tsconfig-paths/register prisma/seeding/initiateDb.ts"
+            ],
+            "cwd": "apps/lwit",
+            "parallel": false
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              "docker-compose up -d",
+              "npx cross-env NODE_ENV=development nx base-serve lwit"
+            ],
+            "cwd": "apps/lwit",
+            "parallel": false
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "lwit:build:production"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/lwit/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/lwit"
+          ],
+          "options": {
+            "jestConfig": "apps/lwit/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "lwit-e2e": {
+      "root": "apps/lwit-e2e",
+      "sourceRoot": "apps/lwit-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/lwit-e2e/cypress.json",
+            "tsConfig": "apps/lwit-e2e/tsconfig.e2e.json",
+            "devServerTarget": "lwit:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lwit:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/lwit-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "admin": {
+      "root": "apps/admin",
+      "sourceRoot": "apps/admin/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/admin",
+            "index": "apps/admin/src/index.html",
+            "main": "apps/admin/src/main.ts",
+            "polyfills": "apps/admin/src/polyfills.ts",
+            "tsConfig": "apps/admin/tsconfig.app.json",
+            "assets": [
+              "apps/admin/src/favicon.ico",
+              "apps/admin/src/assets"
+            ],
+            "styles": [
+              "apps/admin/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/admin/src/environments/environment.ts",
+                  "with": "apps/admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "admin:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "admin:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/admin/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/admin"
+          ],
+          "options": {
+            "jestConfig": "apps/admin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "admin-e2e": {
+      "root": "apps/admin-e2e",
+      "sourceRoot": "apps/admin-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/admin-e2e/cypress.json",
+            "tsConfig": "apps/admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/admin-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "lwit"
+}
