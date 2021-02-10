@@ -27,8 +27,10 @@ export default function ButtonWithSound(
 		onClick={(e) => {
 			console.log('button-with-sound playing', data)
 			if(!data.isPlaying) {
-				play({})
+				play()
 			}
+			// FIXME: the below function may be a setstate and it somehow
+			//         causes memory leaks? (according to console logs)
 			props.onClick && props.onClick(e)
 		}}
 	>
