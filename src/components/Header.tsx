@@ -223,7 +223,7 @@ const Header: React.FC = () => {
 
 	return (
 		<div className={classes.grow}>
-			<AppBar position="static">
+			<AppBar position="static" style={{ background: '#d1c7AF' }}>
 				<Toolbar>
 					<IconButton
 						edge="start"
