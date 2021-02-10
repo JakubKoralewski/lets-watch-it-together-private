@@ -10,8 +10,8 @@ type Props = {
 }
  
 const Layout: React.FC<Props> = (props) => (
-    <Box css={{bgcolor: '#0000ff', minHeight: '100vh'}}>
-        <Box css={{ bgcolor: '#cfe8fc', width: '80%', height: '100vh', margin: 'auto' }}>
+    <Box css={{bgcolor: '#556CD6', minHeight: '100vh'}}>
+        <Box css={{ bgcolor: '#ffffff', width: '80%', height: '100vh', margin: 'auto' }}>
             <Header />
             <Container className="layout" maxWidth="md">
                 {props.children}
