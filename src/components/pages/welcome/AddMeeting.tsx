@@ -42,7 +42,6 @@ export function AddMeeting(
 		const friendsResults: UserPublicSearchResult[] =
 			await fetchUsers()
 
-		// console.log({searchResults})
 		if (friendsResults && friendsResults.length > 0) {
 			const mappedResults: Record<number, UserPublicSearchResult> = {}
 			friendsResults.forEach(usr => {
@@ -57,6 +56,9 @@ export function AddMeeting(
 
 	useEffect(() => {
 		setLoading(false)
+		//FIXME: https://juliangaramendy.dev/blog/use-promise-subscription
+		//       memory leak, stop the getFriends from setting state after it was
+		//                    unmounted
 		getFriends().catch((err) => {
 			console.error('get friends failed', err)
 		})

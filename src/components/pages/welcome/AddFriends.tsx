@@ -169,7 +169,6 @@ export function AddFriends(
 						)
 				}
 			</Box>
-			<BackgroundMusic source={SoundPaths.BgMusic}/>
 		</NextOrSkipWrapper>
 	)
 }
