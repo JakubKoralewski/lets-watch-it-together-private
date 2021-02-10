@@ -115,6 +115,7 @@ export default function ShowSmall(
 
 	return (
 		<StyledTooltip
+			disableHoverListener={!disableLiking}
 			title={TooltipStrings.showListItemSelect}
 		>
 			<Card

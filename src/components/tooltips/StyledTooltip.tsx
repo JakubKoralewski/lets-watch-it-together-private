@@ -11,12 +11,15 @@ const useStylesMaterial = makeStyles((theme: Theme) => ({
 	},
 }));
 
-export const StyledTooltip = (props: TooltipProps) => {
+export function StyledTooltip({children, ...props}: TooltipProps): JSX.Element {
 	const classes = useStylesMaterial();
 
 	return <Tooltip 
 		arrow 
 		TransitionComponent={Zoom}
 		classes={classes} 
-		{...props}/>
+		{...props}
+	>
+		{children}
+	</Tooltip>
 }
