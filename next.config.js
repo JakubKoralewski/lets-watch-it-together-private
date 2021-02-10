@@ -5,7 +5,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 
-
 module.exports = (_phase, { _defaultConfig }) => {
 	return withBundleAnalyzer(
 		withPWA({
@@ -21,20 +20,23 @@ module.exports = (_phase, { _defaultConfig }) => {
 								publicPath: '/_next/static/sounds/',
 								outputPath: 'static/',
 								name: '[name].[ext]',
-								esModule: false,
-							},
-						},
-				});
+								esModule: false
+							}
+						}
+				})
 				// https://github.com/blitz-js/blitz/issues/13
 				// https://github.com/blitz-js/blitz/issues/29
 				// https://github.com/blitz-js/blitz/pull/31
-				return config;
+				return config
 			},
 			pwa: {
 				dest: 'public',
 				disable: process.env.NODE_ENV === 'development'
 			},
-			reactStrictMode: true
+			reactStrictMode: true,
+			future: {
+				webpack5: true
+			}
 		})
 	)
 }
