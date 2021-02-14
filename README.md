@@ -1,8 +1,14 @@
+Further development in https://github.com/JakubKoralewski/lets-watch-it-together
+
 # lets-watch-it-together [![](https://img.shields.io/badge/Wiki-Notion-%23000)](https://www.notion.so/jcubed/Let-s-Watch-It-Together-Wiki-881515aba11241eaa43e7a9428419d81) [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/JakubKoralewski/lets-watch-it-together/test?label=tests)](https://github.com/JakubKoralewski/lets-watch-it-together/actions?query=workflow%3Atest) [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-RUP University Project
+SCRUM University Project
 
-Live at https://lets-watch-it-together.herokuapp.com
+Live at https://lets-watch-it-together-scrum.herokuapp.com
+
+This repository has been a private fork of the [original one](https://github.com/JakubKoralewski/lets-watch-it-together)
+where a small SCRUM team was supposed to improve the project after the RUP
+phase was finished. The original repo is the place further development should be done.
 
 Read the [Let's Watch It Together Wiki](https://www.notion.so/jcubed/Let-s-Watch-It-Together-Wiki-881515aba11241eaa43e7a9428419d81)
 for more information regarding the implementation.
